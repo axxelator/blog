@@ -14,28 +14,26 @@ categories = [
 
 <!-- MarkdownTOC autolink="true" bracket="round" depth="2" -->
 
-- [Introduction](#introduction)
-- [Challenge-response Architecture](#challenge-response-architecture)
-- [Affordance System](#affordance-system)
-- [Objects](#objects)
-- [Conclusion](#conclusion)
+- [Einführung](#Einführung)
+- [Aufforderung-Antwort-Verfahren](#Aufforderung-Antwort-Verfahren)
+- [Angebotssystem](#Angebotssystem)
+- [Objekte](#Objekte)
+- [Fazit](#Fazit)
 
 <!-- /MarkdownTOC -->
 
-# Introduction
+# Einführung
 
-This tutorial presents a text-based "game" (the user does not interact
-with the program, and can not influence the character's decisions) that uses a
-[challenge-response architecture](#challenge-response-architecture) to
-determine what are the possible actions the game's character can
-do. The full source-code can be found in
-[CX's repository](https://github.com/skycoin/cx), in the file *examples/text-based-adventure.cx*.
+Dieses Tutorial zeigt ein textbasiertes "Spiel" (der Benutzer interagiert nicht mit dem Programm und 
+kann die Entscheidungen der Spielfigur nicht beeinflussen), das ein
+[Aufforderung-Antwort-Verfahren](#Aufforderung-Antwort-Verfahren) verwendet, um zu bestimmen, 
+welche möglichen Aktionen die Spielfigur ausführen kann. Der vollständige Quellcode ist im
+[CX's repository](https://github.com/skycoin/cx), in der Datei *examples/text-based-adventure.cx* zu finden.
 
-The game describes the adventure of a traveler that is escaping from a
-monster (Halloween is coming next month, after all). If the traveler
-survives certain number of hours (well, these are just iterations in a
-*for* loop), the monster will stop chasing the traveler. An example of
-a session is below:
+Das Spiel beschreibt das Abenteuer eines Reisenden, der vor einem Monster flieht (nächsten Monat ist Halloween). 
+Wenn der Reisende eine bestimmte Anzahl von Stunden überlebt (nun, das sind nichts weiter 
+als Iterationen in einer *for* Schleife), hört das Monster auf, den Reisenden zu jagen. 
+Unten ein Beispiel für eine Sitzung:
 
 
 ```
@@ -51,8 +49,8 @@ The traveler runs away, and cowardice lets him live for another day.
 You survived.
 ```
 
-If the traveler decides to fight the monster and his heroic attempt
-fails, the game ends. An example of a game ending is:
+Wenn der Reisende sich entscheidet, das Monster zu bekämpfen und sein heroischer Versuch
+scheitert, endet das Spiel. Ein Beispiel für ein Spielende ist:
 
 ```
 North, east, west, south. Any direction is good,
@@ -73,18 +71,20 @@ halt() Arguments:
 65: call to halt
 ```
 
-As you can see, an error is raised if you die (this is suitable, as
-it's a scary situation for a programmer).
+Wie Sie sehen können, wird ein Fehler ausgelöst, wenn Sie sterben (das ist gut so, 
+da es für den Programmierer eine beängstigende Situation ist).
 
-# Challenge-response Architecture
 
-In this architecture, a question is raised and different agents (in
-this case, functions) must answer to that question. A simple question
-that can be asked is "Who can be executed at this moment?" and those
-functions that are allowed to execute will do so.
+# Aufforderung-Antwort-Verfahren
 
-The following function prototypes represent the possible actions that
-can occur during the traveler's adventure.
+In diesem Verfahren wird eine Frage gestellt und verschiedene Agenten (in diesem Fall 
+Funktionen) müssen auf diese Frage antworten. Eine einfache Frage, die gestellt werden 
+kann, lautet: "Wer kann in diesem Moment ausgeführt werden?" und die Funktionen, die 
+ausgeführt werden dürfen, tun dies.
+
+Die folgenden Funktionsprototypen stellen die möglichen Aktionen dar, die während des 
+Abenteuers des Reisenden auftauchen können.
+
 
 ```
 func walk (flag bool) () {}
