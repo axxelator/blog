@@ -178,7 +178,7 @@ Verfahrens mag auf den ersten Blick wertlos erscheinen. Aber dessen ungeachtet:
 Komplexere Regeln, die wesentlich mehr Objekte beinhalten, können definiert 
 werden und eine einzige davon könnte dafür verantwortlich sein, eine ganze Anzahl 
 von Knoten in einem grossen Aktionsnetzwerk zu aktivieren. Ausserdem sind in diesem 
-Beispiel nur zwei mögliche Argumente "ja" und "nein" beteiligt, dabei können wir 
-viel mehr Argumente haben und Aktionen, die andere als boolsche Arten von Argumenten
+Beispiel nur zwei mögliche Argumente ("ja" und "nein") beteiligt, dabei könnten wir 
+viel mehr Argumente verwenden und Aktionen, die andere als boolsche Arten von Argumenten
 akzeptieren.
 
