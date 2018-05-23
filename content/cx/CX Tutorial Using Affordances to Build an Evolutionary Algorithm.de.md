@@ -114,7 +114,7 @@ walk(false)
 Im obigen Code sucht *remArg()* nach dem Ausdruck mit der "walk"-Markierung
 und entfernt deren Argument. Dies geschieht, damit das Angebotssystem die 
 Argumente auflistet, die an den Operator des Ausdrucks gesendet werden können. 
-Als nächstes sagt *affExpr()* CX "Unter allen Argumenten, die gesendet werden 
+Als nächstes sagt *affExpr()* CX: "Unter allen Argumenten die gesendet werden 
 können, um zu ´gehen´ (*walk*), sag mir ob ´ja´ (*yes*) oder ´nein´ (*no*) als 
 Argumente benutzt werden können, und wende die nullte (*0th*) Option aus der von dir 
 zurückgegebenen Angebotsliste an.
