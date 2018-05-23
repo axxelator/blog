@@ -116,7 +116,7 @@ und entfernt deren Argument. Dies geschieht, damit das Angebotssystem die
 Argumente auflistet, die an den Operator des Ausdrucks gesendet werden können. 
 Als nächstes sagt *affExpr()* CX: "Unter allen Argumenten die gesendet werden 
 können, um zu ´gehen´ (*walk*), sag mir ob ´ja´ (*yes*) oder ´nein´ (*no*) als 
-Argumente benutzt werden können, und wende die nullte (*0th*) Option aus der von dir 
+Argumente benutzt werden können, und wende die nullte (*0th*) Option der von dir 
 zurückgegebenen Angebotsliste an.
 
 Das vorherige Verfahren wird auf alle Aktionen angewendet, die während des Abenteuers 
