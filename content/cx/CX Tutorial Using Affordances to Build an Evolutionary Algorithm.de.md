@@ -95,11 +95,11 @@ func fightResult (flag bool) () {}
 func theEnd (flag bool) () {}
 ```
 
-# Affordance System
+# Angebotssystem
 
-Another function must coordinate the function calls. In this case,
-CX's affordance system is used to determine if an action is allowed to
-run or not.
+Eine andere Funktion muss die Funktionsaufrufe koordinieren. In diesem 
+Fall wird das Angebotssystem von CX verwendet, um zu bestimmen, ob eine 
+Aktion ausgeführt werden darf oder nicht.
 
 ```
 yes := true
@@ -111,18 +111,18 @@ affExpr("walk", "yes|no", 0)
 walk(false)
 ```
 
-In the code above, *remArg()* looks for an expression with the "walk"
-tag and removes its argument. This is done in order to make the
-affordance system list the arguments that can be sent to the
-expression's operator. Next, *affExpr()* is telling CX "among all the
-arguments that can be sent to *walk*, tell me if *yes* or no *no* can
-be used as arguments, and apply the *0th* option from the affordance
-list that you return."
+Im obigen Code sucht *remArg()* nach dem Ausdruck mit der "walk"-Markierung
+und entfernt deren Argument. Dies geschieht, damit das Angebotssystem die 
+Argumente auflistet, die an den Operator des Ausdrucks gesendet werden können. 
+Als nächstes sagt *affExpr()* CX "Unter allen Argumenten, die gesendet werden 
+können, um zu ´gehen´ (*walk*), sag mir ob ´ja´ (*yes*) oder ´nein´ (*no*) als 
+Argumente benutzt werden können, und wende die nullte (*0th*) Option aus der von dir 
+zurückgegebenen Angebotsliste an.
 
-The previous procedure is applied to all the actions that can happen
-during the traveler's adventure. For each of these actions, the
-following rules are queried to determine if the action should be
-allowed or not:
+Das vorherige Verfahren wird auf alle Aktionen angewendet, die während des Abenteuers 
+des Reisenden passieren können. Für jede dieser Aktionen werden die folgenden Regeln 
+abgefragt, um zu bestimmen, ob die Aktion erlaubt ist oder nicht:
+
 
 ```
 setClauses("
@@ -141,42 +141,44 @@ setClauses("
         ")
 ```
 
-The first rule can be read as "I will be queried if you're considering
-to send the *yes* argument to the *walk* action. If the object
-*monster* is present, then this argument is *not* an option."
+Die erste Regel kann wie folgt gelesen werden: "Ich werde abgefragt, 
+wenn du in Betracht ziehst das Ja-Argument an die Geh-Aktion zu senden. 
+Wenn das aktuelle Objekt *monster* ist, dann ist dieses Argument keine Option."
 
-The rules in the second block (the 4 rules after the first empty line)
-tell the affordance system to "never" accept a *yes* argument. We do
-this because we want this to be the default behaviour, but we can
-later declare rules that override this behaviour. This override
-process happens with the last 4 rules. Basically, this block of rules
-is telling CX to accept *yes* as arguments if a particular object is
-present in the object stack.
+Die Regeln im zweiten Block (die 4 Regeln nach der ersten leeren Zeile) sagen 
+dem Angebotssystem, "niemals" ein "Ja"-Argument zu akzeptieren. Wir tun das, weil 
+wir wollen, dass dies das Standardverhalten ist, aber wir können später Regeln 
+deklarieren, die dieses Verhalten überschreiben. Dieser Überschreibungsprozess 
+erfolgt mit den letzten 4 Regeln. Grundsätzlich sagt dieser Regelblock CX, dass er *ja* 
+als Argumente akzeptiert, wenn ein bestimmtes Objekt im Objektstapel vorhanden ist.
 
-# Objects
 
-Some of the actions add or remove objects from the object stack. For
-example, whenever the *noise* action decides to make the monster
-appear, *addObject("monster")* is executed. If the traveler decides to
-run away from the fight, the "monster" object is removed from the
-stack.
+# Objekte
 
-In the case of the *chance* action, the monster can decide to spare
-the traveler a few more seconds to see what he will decide to do
-next. To do this, the "fight" object is removed (as the monster does
-not want to start a fight yet), but the "monster" object remains.
+Einige der Aktionen fügen Objekte aus dem Objektstapel hinzu oder entfernen sie. 
+Zum Beispiel, wenn die Rausch-Aktion *noise* entscheidet, das Monster erscheinen 
+zu lassen, wird *addObject("monster")* ausgeführt. Wenn der Reisende sich entscheidet, 
+vor dem Kampf wegzulaufen, wird das "monster"-Objekt vom Stapel entfernt.
 
-# Conclusion
+Im Falle der "zufälligen" Aktion *chance* kann das Monster entscheiden, dem Reisenden 
+noch ein paar weitere Sekunden zu geben, um zu sehen, was er als nächstes tun wird. 
+Um dies zu tun, wird das "fight"-Objekt entfernt (weil das Monster den Kampf noch nicht 
+beginnen möchte), aber das "monster"-Objekt bleibt.
 
-CX's affordance system uses objects and rules to make complex
-decisions about how affordances are going to be filtered.
 
-By using objects, we can decide what actions will be activated or
-deactivated. For this example, a small amount of actions are being
-considered for this activation process, and the benefit of using this
-architecture could seem worthless at first sight. Nevertheless, more
-complex rules involving more objects could be defined, and a single
-rule could be in charge of activating several nodes in a big network
-of actions. Also, in this example only two possible arguments are
-considered: *yes* and *no*; we could have more arguments, and actions
-that accept different types of arguments other than booleans.
+# Fazit
+
+CX's Angebotssystem benutzt Objekte und Regeln, um komplexe Entscheidungen
+zu treffen, wie Angebote gefiltert werden.
+
+Benutzen wir Objekte, können wir entscheiden, welche Aktionen aktiviert 
+oder deaktiviert werden. In diesem Beispiel wird für den Aktivierungsprozess
+nur eine kleine Anzahl von Aktionen herangezogen und der Vorteil dieses 
+Verfahrens mag auf den ersten Blick wertlos erscheinen. Aber dessen ungeachtet: 
+Komplexere Regeln, die wesentlich mehr Objekte beinhalten, können definiert 
+werden und eine einzige davon könnte dafür verantwortlich sein, eine ganze Anzahl 
+von Knoten in einem grossen Aktionsnetzwerk zu aktivieren. Ausserdem sind in diesem 
+Beispiel nur zwei mögliche Argumente "ja" und "nein" beteiligt, dabei können wir 
+viel mehr Argumente haben und Aktionen, die andere als boolsche Arten von Argumenten
+akzeptieren.
+
